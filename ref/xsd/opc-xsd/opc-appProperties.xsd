@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vt:schema targetNamespace="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
+  xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties"
+  xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"
+  elementFormDefault="qualified" blockDefault="#all">
+
+
+  <vt:element name="coreProperties" type="CT_AppProperties"/>
+
+  <vt:complexType name="CT_CoreProperties">
+    <vt:all>
+      <vt:element name="category" minOccurs="0" maxOccurs="1" type="vt:string"/>
+      <vt:element name="contentStatus" minOccurs="0" maxOccurs="1" type="vt:string"/>
+      <vt:element ref="dcterms:created" minOccurs="0" maxOccurs="1"/>
+      <vt:element ref="dc:creator" minOccurs="0" maxOccurs="1"/>
+      <vt:element ref="dc:description" minOccurs="0" maxOccurs="1"/>
+      <vt:element ref="dc:identifier" minOccurs="0" maxOccurs="1"/>
+      <vt:element name="keywords" minOccurs="0" maxOccurs="1" type="CT_Keywords"/>
+      <vt:element ref="dc:language" minOccurs="0" maxOccurs="1"/>
+      <vt:element name="lastModifiedBy" minOccurs="0" maxOccurs="1" type="vt:string"/>
+      <vt:element name="lastPrinted" minOccurs="0" maxOccurs="1" type="vt:dateTime"/>
+      <vt:element ref="dcterms:modified" minOccurs="0" maxOccurs="1"/>
+      <vt:element name="revision" minOccurs="0" maxOccurs="1" type="vt:string"/>
+      <vt:element ref="dc:subject" minOccurs="0" maxOccurs="1"/>
+      <vt:element ref="dc:title" minOccurs="0" maxOccurs="1"/>
+      <vt:element name="version" minOccurs="0" maxOccurs="1" type="vt:string"/>
+</vt:all>
+  </vt:complexType>
+
+  <vt:complexType name="CT_Keywords" mixed="true">
+    <vt:sequence>
+      <vt:element name="value" minOccurs="0" maxOccurs="unbounded" type="CT_Keyword"/>
+  </vt:sequence>
+    <vt:attribute ref="xml:lang" use="optional"/>
+  </vt:complexType>
+
+  <vt:complexType name="CT_Keyword">
+    <vt:simpleContent>
+      <vt:extension base="vt:string">
+        <vt:attribute ref="xml:lang" use="optional"/>
+    </vt:extension>
+    </vt:simpleContent>
+  </vt:complexType>
+
+</vt:schema>
