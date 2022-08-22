@@ -20,7 +20,11 @@ nsmap = {
     "pic": "http://schemas.openxmlformats.org/drawingml/2006/picture",
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
     "sl": "http://schemas.openxmlformats.org/schemaLibrary/2006/main",
+<<<<<<< HEAD
     "vt": "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes",
+=======
+    'vt': "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes",
+>>>>>>> python-docx/master
     "w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main",
     'w14': "http://schemas.microsoft.com/office/word/2010/wordml",
     "wp": "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing",
