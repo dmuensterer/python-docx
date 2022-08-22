@@ -7,6 +7,7 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.opc.packuri import PACKAGE_URI, PackURI
 from docx.opc.part import PartFactory
+from docx.opc.parts.appprops import AppPropertiesPart
 from docx.opc.parts.coreprops import CorePropertiesPart
 from docx.opc.pkgreader import PackageReader
 from docx.opc.pkgwriter import PackageWriter
@@ -32,6 +33,13 @@ class OpcPackage(object):
         # don't place any code here, just catch call if not overridden by
         # subclass
         pass
+
+    @property
+    def app_properties(self):
+        """
+        |AppProperties| object providing read/write access to the App properties for this document.
+        """
+        return self._app_properties_part.app_properties
 
     @property
     def core_properties(self):
@@ -170,6 +178,19 @@ class OpcPackage(object):
         for part in self.parts:
             part.before_marshal()
         PackageWriter.write(pkg_file, self.rels, self.parts)
+
+    @property
+    def _app_properties_part(self):
+        """
+        |AppPropertiesPart| object related to this package. Creates
+        a app properties part if one is not present (not common).
+        """
+        try:
+            return self.part_related_by(RT.APP_PROPERTIES)
+        except KeyError:
+            app_properties_part = AppPropertiesPart.default(self)
+            self.relate_to(app_properties_part, RT.APP_PROPERTIES)
+            return app_properties_part
 
     @property
     def _core_properties_part(self):

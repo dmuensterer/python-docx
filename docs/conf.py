@@ -91,6 +91,8 @@ rst_epilog = """
 
 .. |CoreProperties| replace:: :class:`.CoreProperties`
 
+.. |AppProperties| replace:: :class:`.AppProperties`
+
 .. |datetime| replace:: :class:`.datetime.datetime`
 
 .. |Document| replace:: :class:`.Document`

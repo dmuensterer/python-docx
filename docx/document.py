@@ -94,6 +94,14 @@ class Document(ElementProxy):
         return table
 
     @property
+    def app_properties(self):
+        """
+        A |AppProperties| object providing read/write access to the app
+        properties of this document.
+        """
+        return self._part.app_properties
+
+    @property
     def core_properties(self):
         """
         A |CoreProperties| object providing read/write access to the core

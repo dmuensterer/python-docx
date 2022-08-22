@@ -364,6 +364,10 @@ class RELATIONSHIP_TARGET_MODE(object):
 
 
 class RELATIONSHIP_TYPE(object):
+    APP_PROPERTIES = (
+        'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+        '/extended-properties'
+    )
     AUDIO = (
         'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
         '/audio'

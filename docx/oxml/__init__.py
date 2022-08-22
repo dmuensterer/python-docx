@@ -35,8 +35,13 @@ def register_element_cls(tag, cls):
     element with matching *tag*. *tag* is a string of the form
     ``nspfx:tagroot``, e.g. ``'w:document'``.
     """
-    nspfx, tagroot = tag.split(':')
-    namespace = element_class_lookup.get_namespace(nsmap[nspfx])
+    # Check if namespace exists, if not pass None into get_namespace function
+    if ':' in tag:
+        nspfx, tagroot = tag.split(':')
+        namespace = element_class_lookup.get_namespace(nsmap[nspfx])
+    else:
+        namespace = element_class_lookup.get_namespace(None)
+        tagroot = tag
     namespace[tagroot] = cls
 
 
@@ -68,6 +73,9 @@ from .shared import CT_DecimalNumber, CT_OnOff, CT_String  # noqa
 register_element_cls("w:evenAndOddHeaders", CT_OnOff)
 register_element_cls("w:titlePg", CT_OnOff)
 
+
+from .appprops import CT_AppProperties  # noqa
+register_element_cls('Properties', CT_AppProperties)
 
 from .coreprops import CT_CoreProperties  # noqa
 register_element_cls('cp:coreProperties', CT_CoreProperties)

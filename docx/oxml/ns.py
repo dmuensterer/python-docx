@@ -15,15 +15,17 @@ nsmap = {
     "dcmitype": "http://purl.org/dc/dcmitype/",
     "dcterms": "http://purl.org/dc/terms/",
     "dgm": "http://schemas.openxmlformats.org/drawingml/2006/diagram",
+    "ep": "http://schemas.openxmlformats.org/officeDocument/2006/extended-properties",
     "m": "http://schemas.openxmlformats.org/officeDocument/2006/math",
     "pic": "http://schemas.openxmlformats.org/drawingml/2006/picture",
     "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
     "sl": "http://schemas.openxmlformats.org/schemaLibrary/2006/main",
+    "vt": "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes",
     "w": "http://schemas.openxmlformats.org/wordprocessingml/2006/main",
     'w14': "http://schemas.microsoft.com/office/word/2010/wordml",
     "wp": "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing",
     "xml": "http://www.w3.org/XML/1998/namespace",
-    "xsi": "http://www.w3.org/2001/XMLSchema-instance",
+    "xsi": "http://www.w3.org/2001/XMLSchema-instance"
 }
 
 pfxmap = dict((value, key) for key, value in nsmap.items())
@@ -91,7 +93,16 @@ def nsdecls(*prefixes):
     Return a string containing a namespace declaration for each of the
     namespace prefix strings, e.g. 'p', 'ct', passed as *prefixes*.
     """
-    return ' '.join(['xmlns:%s="%s"' % (pfx, nsmap[pfx]) for pfx in prefixes])
+    rtn_str = []
+    for pfx in prefixes:
+        if pfx == 'ep':
+            rtn_str.append('xmlns="%s"' % (nsmap[pfx]))
+        else:
+            rtn_str.append('xmlns:%s="%s"' % (pfx, nsmap[pfx]))
+
+    print(' '.join(rtn_str))
+    return ' '.join(rtn_str)
+    #return ' '.join(['xmlns:%s="%s"' % (pfx, nsmap[pfx]) for pfx in prefixes])
 
 
 def nspfxmap(*nspfxs):

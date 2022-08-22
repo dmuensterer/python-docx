@@ -37,6 +37,14 @@ class DocumentPart(BaseStoryPart):
         return header_part, rId
 
     @property
+    def app_properties(self):
+        """
+        A |AppProperties| object providing read/write access to the app
+        properties of this document.
+        """
+        return self.package.app_properties
+
+    @property
     def core_properties(self):
         """
         A |CoreProperties| object providing read/write access to the core
